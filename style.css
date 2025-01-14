@@ -1,0 +1,265 @@
+@font-face {
+    font-family: 'MagicFont';
+    /* https://www.ceskefonty.cz/ceske-fonty/ringbearer */
+    src: url('fonts/RINGM.TTF') format('truetype');
+}
+
+
+html {
+    scroll-behavior: smooth;
+    text-align: center;
+}
+body {
+    background-color: #000000;
+    margin: 0px;
+}
+
+#sceny {
+    font-family: 'MagicFont', sans-serif;
+    font-size: 1em;
+
+    position: absolute; top: 0px;
+    width: 100vw; height: 100vh;
+
+    display: flex;
+    justify-content: center; /* Horizontální zarovnání na střed */
+    align-items: center; /* Vertikální zarovnání na střed */
+
+    background-size: cover;
+    background-position: center;
+}
+
+#sceny.doma { background-image: url('img/doma.jpg'); }
+#sceny.boj { background-image: url('img/hrbitov.jpg'); }
+#sceny.skola { background-image: url('img/skola.jpg'); }
+#sceny.sklenik { background-image: url('img/sklenik.jpg'); }
+#sceny.pozemky { background-image: url('img/pozemky.jpg'); }
+#sceny.lektvary { background-image: url('img/lektvary.jpg'); }
+#sceny.hriste { background-image: url('img/hriste.jpg'); }
+#sceny.hala { background-image: url('img/hala.jpg'); }
+#sceny.bradavice { background-image: url('img/bradavice.jpg'); }
+
+#sceny section:after {
+    content: '';
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    position: absolute;
+    top: 10%;
+    right: 14%;
+    height: 435px;
+    width: 210px;
+}
+#sceny.boj section:after { background-image: url('img/grinchdemort.png'); }
+#sceny section#cervicek:after { background-image: url('img/cervicek.png'); }
+#sceny section#smrtijedi:after { background-image: url('img/smrtijedi.png'); }
+#sceny section#mozkomor:after { background-image: url('img/mozkomor.png'); }
+#sceny section#grinchdemort:after { background-image: url('img/grinchdemort.png'); }
+#sceny section#grinchdemort_expelliarmus:after { background-image: url(''); }
+#sceny section#grinchdemort_felix:after { background-image: url(''); }
+#sceny section#grinchdemort_rozpuleni:after { background-image: url(''); }
+#sceny section#grinchdemort_nic:after { background-image: url(''); }
+#sceny section#vyhra:after { background-image: url(''); }
+
+#sceny.skola section:after,
+#sceny.hala section:after { background-image: url('img/brumbal.png'); }
+#sceny.hriste section:after { background-image: url('img/hoochova.png'); }
+#sceny.sklenik section:after { background-image: url('img/preetova.png'); }
+#sceny.pozemky section:after { background-image: url('img/hagrid.png'); }
+#sceny.lektvary section:after { background-image: url('img/kriklan.png'); }
+
+#sceny section:not(#intro_video):before {
+    content: '';
+    background-image: url('img/kouzelnice.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    position: absolute;
+    bottom: 2%;
+    left: 8%;
+    height: 435px;
+    width: 210px;
+}
+#sceny section#mozkomor_koste:before { background-image: url(''); }
+#sceny section#grinchdemort_felix:before { background-image: url(''); }
+#sceny section#cervicek_mince:before { background-image: url(''); }
+#sceny section#smrtijedi_karty:before { background-image: url(''); }
+#sceny section#mozkomor_kralik:before { background-image: url(''); }
+#sceny section#mozkomor_kralik:before { background-image: url(''); }
+#sceny section#grinchdemort_rozpuleni:before { background-image: url(''); }
+/* #sceny.boj section:before,
+#sceny.skola section:before,
+#sceny.hala section:before { background-image: url('img/kouzelnice.png'); } */
+
+section:not(#darek) {
+    width: 50vw;
+    margin: 0 auto;
+    /* position: relative;
+    top: 30%; left: 0px; right: 0px; */
+}
+section#intro_video { width: 70vw; }
+
+h1, h2 {
+    padding: 30px;
+    text-align: center;
+    background-image: url('img/text_bcg.png');
+    background-position: 0 0;
+    background-repeat: repeat;
+    border-radius: 20px;
+    box-sizing: border-box;
+    position: relative; /* Pro umožnění absolutního pozicování pseudoelementů */
+    z-index: 2;
+}
+h1 { box-shadow: 0px 0px 30px black; }
+h2 { box-shadow: 0px 0px 20px white; margin-top: 60px; }
+/* Pseudoelement pro trojúhelník */
+h1::after, h2::after {
+    content: ''; /* Pseudoelement potřebuje obsah */
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 0 15px 15px; /* Velikost šipky: trojúhelník bude "směřovat doleva" */
+    border-color: transparent transparent transparent #a59d8e; /* Levý okraj má barvu bubliny */
+    background-repeat: repeat;
+    background-position: 0 0;
+    background-clip: padding-box;
+    background-size: contain;
+}
+h1::after {
+    transform: rotate(-45deg);
+    top: -12px;
+    right: -5px;
+    filter: drop-shadow(8px 0px 5px black);
+    z-index: 1;
+}
+h2::after {
+    transform: rotate(140deg);
+    bottom: -12px;
+    left: -5px;
+    filter: drop-shadow(8px 0px 5px white);
+    z-index: 1;
+}
+
+section .moznosti {
+    margin-top: 50px;
+    display: flex; align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+section .moznosti .btn {
+    text-decoration: none;
+    text-align: center;
+    margin: 0 10px;
+    padding: 15px;
+    background-color: blueviolet;
+    border: 2px solid goldenrod;
+    box-shadow: 0px 0px 5px goldenrod;
+    border-radius: 40px;
+    color: #ffffff;
+    transition: background-color .2s;
+}
+section .moznosti .btn:hover,
+section .moznosti .btn:focus {
+    background-color: purple;
+}
+section .moznosti .btn.ne { background-color: gray; }
+section .moznosti .btn.ne:hover,
+section .moznosti .btn.ne:focus { background-color: #333333; }
+
+section .moznosti .btn img { transition: transform .5s, filter .5s; }
+
+section .moznosti .btn.kolej { background-color: transparent; color: #000000; border: none; box-shadow: none; }
+section .moznosti .btn.kolej span { font-size: 20px; text-shadow: 0px 0px 2px #ffffff; }
+section .moznosti .btn.kolej:hover,
+section .moznosti .btn.kolej:focus { background-color: transparent; }
+section .moznosti .btn.kolej:hover img,
+section .moznosti .btn.kolej:focus img { transform: scale(1.1); filter: drop-shadow(0px 0px 10px blueviolet); }
+
+.uceni_kouzlo {
+    transform: scale(0); /* Zmenšený stav */
+    transform-origin: center; /* Střed jako bod přiblížení */
+    opacity: 0; /* Neviditelný při startu */
+    transition: transform 1s ease-in-out, opacity 1s; /* Plynulý efekt přiblížení */
+}
+.uceni_kouzlo.visible {
+    transform: scale(1); /* Plná velikost */
+    opacity: 1; /* Viditelný */
+}
+
+.svg-container #start,
+.svg-container #kouzlo,
+.svg-container #finish {
+    cursor: url(https://cdn.custom-cursor.com/db/cursor/32/Harry_Potter_LunaLovegoodWandCursor.png), default !important;
+}
+.svg-container.letani #start,
+.svg-container.letani #kouzlo,
+.svg-container.letani #finish {
+    cursor: url(https://cdn.custom-cursor.com/db/cursor/32/Harry_Potter_Nimbus_2000_andGoldenSnitchCursor.png), default !important;
+}
+.svg-container.mandragora #start,
+.svg-container.mandragora #kouzlo,
+.svg-container.mandragora #finish {
+    cursor: url(https://cdn.custom-cursor.com/db/cursor/32/Harry_Potter_NewtScamanderandPickettCursor.png), default !important;
+}
+.svg-container.klofan #start,
+.svg-container.klofan #kouzlo,
+.svg-container.klofan #finish {
+    cursor: url(https://cdn.custom-cursor.com/db/9597/32/harry-potter-porpentina-goldstein-and-wand-pointer.png), default !important;
+}
+.svg-container.lektvary #start,
+.svg-container.lektvary #kouzlo,
+.svg-container.lektvary #finish {
+    cursor: url(https://cdn.custom-cursor.com/db/cursor/32/Harry_Potter_BellatrixLestrangeWandCursor.png), default !important;
+}
+
+.svg-container #start,
+.svg-container #finish { filter: drop-shadow(0px 0px 10px white); }
+
+.svg-container .carovani { animation: carovani 2.5s infinite ease-in-out; }
+@keyframes carovani {
+    0% {
+        filter: drop-shadow(0px 0px 5px rgb(0, 255, 242));
+    }
+    50% {
+        filter: drop-shadow(0px 0px 20px rgb(0, 255, 242));
+    }
+    100% {
+        filter: drop-shadow(0px 0px 5px rgb(0, 255, 242));
+    }
+}
+
+
+#menu {
+    position: absolute;
+    right: 0; bottom: 0;
+    background-color: rgb(51, 51, 51, .5);
+    color: #ffffff;
+    overflow: scroll; height: 100vh;
+}
+#menu-buttons {
+    margin: 0px;
+    padding: 10px;
+    list-style-type: none;
+
+}
+#menu-buttons a {
+    margin-bottom: 5px;
+    box-shadow: none !important; border: none !important; background-color: transparent !important;
+    color: #ffffff;
+}
+#menu-buttons a:hover,
+#menu-buttons a:focus { color: yellowgreen; cursor: pointer; }
+
+.listek {
+    position: absolute;
+    max-height: 750px;
+    left: 0px; right: 0px; top: 10%;
+    margin: 0 auto;
+}
+#listek_1.listek { transform: rotate(25deg) translateY(-50%); transform-origin: -100% 50%; }
+#listek_2.listek { transform: rotate(-25deg) translateY(-50%); transform-origin: 200% 100%; }
+
+video { object-fit: contain; width: 70%; height: 100%; margin-top: 100px; }
+section.nic video { width: 20%; }
+section#intro_video video { width: 100%; margin-top: 0px; }
