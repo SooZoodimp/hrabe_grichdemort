@@ -11,10 +11,34 @@ $(document).on("click", "a[data-target]", function (e) {
 
 // Načtení výchozí scény při startu
 $(document).ready(function () {
+    kontrolaPovolenehoZvuku();
+    
     var target = "sceny/main/00_intro_video.html";
     loadSceneByTarget(target);
 });
 
+function kontrolaPovolenehoZvuku(){
+    // Vytvoření skrytého video elementu pro test
+    const video = $('<video>', {
+        muted: true, // Video je ztlumené
+        autoplay: true, // Pokus o automatické přehrání
+        style: 'display:none', // Skryjeme video
+        src: 'sceny/main/00_intro_video.html',
+    }).appendTo('body'); // Přidáme video do dokumentu
+
+    // Pokus o přehrání videa
+    video[0].play().then(() => {
+        console.log('Média lze přehrát.');
+    }).catch(() => {
+        console.log('Média jsou blokována.');
+
+        // Pokud je přehrávání blokováno, přidáme atribut controls ke všem <video>
+        $('video').attr('controls', true);
+    }).finally(() => {
+        // Po testu odstraníme vytvořené video
+        video.remove();
+    });
+}
 
 // Funkce pro načítání scény podle data-target
 function loadSceneByTarget(target) {
